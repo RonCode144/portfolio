@@ -1,0 +1,64 @@
+---
+import { useTranslations, type Language } from '../i18n/index';
+
+interface Props {
+  lang: Language;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+---
+
+<section id="hero" class="relative min-h-screen flex items-center justify-center overflow-hidden grid-background pt-20">
+  <div class="absolute inset-0 overflow-hidden pointer-events-none">
+    <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-accent-purple/20 rounded-full blur-[128px] animate-pulse-glow"></div>
+    <div class="absolute bottom-1/4 right-1/4 w-96 h-96 bg-accent-blue/20 rounded-full blur-[128px] animate-pulse-glow" style="animation-delay: 1.5s;"></div>
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-accent-cyan/10 rounded-full blur-[180px] animate-pulse-glow" style="animation-delay: 3s;"></div>
+  </div>
+
+  <div class="relative z-10 max-w-4xl mx-auto px-6 text-center">
+    <div class="animate-on-scroll">
+      <span class="inline-flex items-center gap-2 px-4 py-2 mb-8 text-xs font-medium rounded-full bg-surface border border-border text-text-secondary">
+        <span class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
+        {t.hero.currentlyBuilding}
+      </span>
+    </div>
+
+    <h1 class="text-5xl md:text-7xl font-bold mb-6 animate-on-scroll" style="animation-delay: 0.1s;">
+      {t.hero.name}
+    </h1>
+
+    <p class="text-xl md:text-2xl text-text-secondary mb-4 font-medium animate-on-scroll" style="animation-delay: 0.2s;">
+      {t.hero.title}
+    </p>
+
+    <p class="text-lg text-accent-purple mb-12 animate-on-scroll" style="animation-delay: 0.3s;">
+      {t.hero.tagline}
+    </p>
+
+    <div class="flex flex-col sm:flex-row items-center justify-center gap-4 animate-on-scroll" style="animation-delay: 0.4s;">
+      <a
+        href="#projects"
+        class="px-8 py-3 bg-gradient-to-r from-accent-blue to-accent-purple text-white font-medium rounded-xl hover:opacity-90 transition-opacity duration-200"
+      >
+        {t.hero.viewProjects}
+      </a>
+      <a
+        href="/cv.pdf"
+        download
+        class="group px-8 py-3 bg-surface border border-border text-text-primary font-medium rounded-xl hover:border-accent-purple transition-all duration-200 flex items-center gap-2"
+      >
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/>
+        </svg>
+        {t.hero.downloadCV}
+      </a>
+    </div>
+  </div>
+
+  <div class="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
+    <svg class="w-6 h-6 text-text-muted" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"/>
+    </svg>
+  </div>
+</section>

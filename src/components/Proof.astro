@@ -1,0 +1,40 @@
+---
+import { useTranslations, type Language } from '../i18n/index';
+
+interface Props {
+  lang: Language;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+---
+
+<section class="py-24 px-6">
+  <div class="max-w-6xl mx-auto">
+    <div class="text-center mb-16 animate-on-scroll">
+      <h2 class="text-sm font-semibold text-accent-purple uppercase tracking-wider mb-4">
+        {t.proof.title}
+      </h2>
+    </div>
+
+    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+      {t.proof.items.map((item, index) => (
+        <div 
+          class="group p-6 rounded-xl bg-surface border border-border hover:border-accent-purple/30 transition-all duration-300 animate-on-scroll"
+          style={`animation-delay: ${index * 0.1}s;`}
+        >
+          <div class="flex items-start gap-4">
+            <div class="flex-shrink-0 w-10 h-10 rounded-lg bg-gradient-to-br from-accent-blue/20 to-accent-purple/20 flex items-center justify-center">
+              <svg class="w-5 h-5 text-accent-purple" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+              </svg>
+            </div>
+            <p class="text-sm text-text-secondary leading-relaxed">
+              {item}
+            </p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

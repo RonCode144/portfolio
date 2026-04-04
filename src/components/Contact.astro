@@ -1,0 +1,80 @@
+---
+import { useTranslations, type Language } from "../i18n/index";
+
+interface Props {
+  lang: Language;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+---
+
+<section
+  id="contact"
+  class="py-24 px-6 bg-gradient-to-b from-surface/50 to-background"
+>
+  <div class="max-w-3xl mx-auto text-center">
+    <div class="animate-on-scroll">
+      <h2 class="text-4xl md:text-5xl font-bold mb-6 gradient-text">
+        {t.contact.title}
+      </h2>
+      <p class="text-lg text-text-secondary mb-12">
+        {t.contact.cta}
+      </p>
+    </div>
+
+    <div
+      class="flex flex-col sm:flex-row items-center justify-center gap-4 animate-on-scroll"
+      style="animation-delay: 0.2s;"
+    >
+      <a
+        href="mailto:ronny@ronnygutierrez.dev"
+        class="w-full sm:w-auto px-8 py-4 bg-gradient-to-r from-accent-blue to-accent-purple text-white font-medium rounded-xl hover:opacity-90 transition-opacity duration-200 flex items-center justify-center gap-2"
+      >
+        <svg
+          class="w-5 h-5"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+          ></path>
+        </svg>
+        {t.contact.email}
+      </a>
+      <a
+        href="/cv.pdf"
+        download
+        class="w-full sm:w-auto px-8 py-4 bg-surface border border-border text-text-primary font-medium rounded-xl hover:border-accent-purple transition-all duration-200 flex items-center justify-center gap-2"
+      >
+        <svg
+          class="w-5 h-5"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"
+          ></path>
+        </svg>
+        {t.contact.downloadCV}
+      </a>
+    </div>
+  </div>
+
+  <footer class="mt-24 pt-8 border-t border-border">
+    <div class="max-w-6xl mx-auto text-center text-sm text-text-muted">
+      <p>
+        &copy; {new Date().getFullYear()} Ronny Gutierrez Vitola. All rights reserved.
+      </p>
+      <p>Construido con Astro</p>
+    </div>
+  </footer>
+</section>

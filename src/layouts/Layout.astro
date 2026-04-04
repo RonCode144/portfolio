@@ -1,0 +1,60 @@
+---
+import "../styles/globals.css";
+import Navbar from "../components/Navbar.astro";
+import { useTranslations, getLangFromUrl } from "../i18n/index";
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = "Ronny Gutierrez Vitola| Fullstack Developer",
+  description = "Fullstack Developer specializing in scalable systems, DDD, and logistics optimization.",
+} = Astro.props;
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+---
+
+<!doctype html>
+<html lang={lang} class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <title>{title}</title>
+    <script is:inline>
+      (function () {
+        const stored = localStorage.getItem("theme");
+        const prefersDark = window.matchMedia(
+          "(prefers-color-scheme: dark)",
+        ).matches;
+        const theme = stored || (prefersDark ? "dark" : "light");
+        document.documentElement.classList.add(theme);
+      })();
+    </script>
+  </head>
+  <body class="bg-background text-text-primary antialiased">
+    <Navbar lang={lang} />
+    <main>
+      <slot />
+    </main>
+    <script>
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("visible");
+            }
+          });
+        },
+        { threshold: 0.1, rootMargin: "0px 0px -50px 0px" },
+      );
+
+      document.querySelectorAll(".animate-on-scroll").forEach((el) => {
+        observer.observe(el);
+      });
+    </script>
+  </body>
+</html>
